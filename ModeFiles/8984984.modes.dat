@@ -1,0 +1,13 @@
+version 1.0 (Automatic Bayesian peakBagging Algorithm -- 06/2019 -- T.Kallinger)
+#
+KIC  8984984
+#
+      fmax    fmax_e       dnu     dnu_e   dnu_cor dnu_cor_e     dnu02   dnu02_e      f0_c    f0_c_e     alpha   alpha_e   evo
+    10.423     0.187     1.431     0.014     1.468     0.010     0.211     0.012    11.937     0.011    0.0230    0.0091     3
+#
+  l      freq  freq_err       amp   amp_err       tau   tau_err        ev       ev1
+  0     9.060     0.020     188.1      26.8      66.5      21.1     1.000     0.000
+  0    10.549     0.024     187.2      21.8      54.2      22.0     1.000     0.000
+  0    11.932     0.010     237.2      20.0      72.2      15.1     1.000     0.000
+  0    13.438     0.034     113.4      20.7      51.7      19.7     1.000     0.000
+  2     3.824     0.069     180.3      59.4      25.6      25.6     0.932     0.000
