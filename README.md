@@ -9,6 +9,7 @@ The modefiles contains general information about the star in the header:
 - *dnu*, *dnu02*, and *f_c*: The larger and small frequency separation determine in the central three radial modes around fmax and the frequency of the central radial mode as defined in Eq.2 of Kallinger et al. (2010). All parameters are in microHz.
 - *dnu_cor* and *alpha*: Values of the curvature corrected large separation in microHz and the corresponding dimensionless curvature parameter as defined in Eq.,4 of Kallinger et al. (2018).
 - *evo*: Evolutionary stage of the star determined from the phase shift of the central radial mode (Kallinger et al. 2012) with 0 - RGB star, 1 - RC star, 2 - secondary clump star, and 3 - AGB star.
+
 The individual mode parameters are given in the main block:
 - *l*: mode degree
 - *freq*: mode frequency in microHz
@@ -16,6 +17,7 @@ The individual mode parameters are given in the main block:
 - *tau*: mode lifetime in days (0 for unresolved modes fitted with a squared sinc-function)
 - *ev* and *ev1*: mode evidence (i.e. the probability that the mode is not due to noise). A useful threshold is 0.91, which corresponds to *strong evidence* in probability theory. The *ev1* parameter is only valid for l=1 modes. 
 
+[issue or pull request](http://www.github.com/jlord/sheetsee.js)
 
 To download the full repository (~650MB) type the following command 
 ```
