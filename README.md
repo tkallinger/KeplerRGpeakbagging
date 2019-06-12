@@ -22,7 +22,7 @@ To download the full repository (~650MB) type the following command
 ```
 git clone https://github.com/tkallinger/KeplerRGpeakbagging.git
 ```
-Individual mode files can be downloaded using the Python function [read_modefile.py(https://github.com/tkallinger/KeplerRGpeakbagging/blob/master/read_modefile.py)
+Individual mode files can be downloaded using the Python function [read_modefile.py](https://github.com/tkallinger/KeplerRGpeakbagging/blob/master/read_modefile.py)
 
 A summary of the global seismic parameters of all stars in the library is given in the file *summary.dat*
 
