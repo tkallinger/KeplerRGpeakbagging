@@ -1,6 +1,6 @@
 # Massive peak bagging of red giants in the Kepler field
 
-A library of frequencies, amplitdes, and lifetimes of more than 250,000 individual l=0 to 3 oscillations modes of 6179 red giants from APOKASC sample. The parameters were extracted with the Automated Bayesian peak-Bagging Algorithm (ABBA).
+A library of frequencies, amplitdes, and lifetimes of more than 250,000 individual l=0 to 3 oscillations modes of 6,179 red giants from APOKASC sample. The parameters were extracted with the Automated Bayesian peak-Bagging Algorithm (ABBA).
 
 Visulaisations (two pdf files per star) of the results are located in the directories [EchellePlots](https://github.com/tkallinger/KeplerRGpeakbagging/tree/master/EchellePlots) and [SpectrumPlots](https://github.com/tkallinger/KeplerRGpeakbagging/tree/master/SpectrumPlots)
 
