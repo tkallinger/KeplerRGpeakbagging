@@ -2,7 +2,7 @@
 
 A library of frequencies, amplitdes, and lifetimes of more than 250,000 individual l=0 to 3 oscillations modes of 6179 red giants from APOKASC sample. The parameters were extracted with the Automated Bayesian peak-Bagging Algorithm (ABBA).
 
-Visulaisations (two pdf files per star) of the results are located in the directories *EchellePlots* and *SpectrumPlots*
+Visulaisations (two pdf files per star) of the results are located in the directories [EchellePlots](https://github.com/tkallinger/KeplerRGpeakbagging/tree/master/EchellePlots) and [SpectrumPlots](https://github.com/tkallinger/KeplerRGpeakbagging/tree/master/SpectrumPlots)
 
 The modefiles contains general information about the star in the header:
 - *fmax*: The frequency of the maximum oscillation power in microHz as defined in Eq.2 in [Kallinger et al. (2014)](https://ui.adsabs.harvard.edu/abs/2014A%26A...570A..41K/abstract) with two super-Lorentzian functions with a fixed exponent of four. The 1 sigma uncertainty is given as fmax_e.
@@ -22,7 +22,7 @@ To download the full repository (~650MB) type the following command
 ```
 git clone https://github.com/tkallinger/KeplerRGpeakbagging.git
 ```
-Individual mode files can be downloaded using the Python function *read_modefile.py*
+Individual mode files can be downloaded using the Python function [read_modefile.py(https://github.com/tkallinger/KeplerRGpeakbagging/blob/master/read_modefile.py)
 
 A summary of the global seismic parameters of all stars in the library is given in the file *summary.dat*
 
