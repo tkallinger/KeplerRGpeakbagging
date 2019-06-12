@@ -4,7 +4,7 @@ A library of frequencies, amplitdes, and lifetimes of more than 250,000 individu
 
 Visulaisations (two pdf files per star) of the results are located in the directories [EchellePlots](https://github.com/tkallinger/KeplerRGpeakbagging/tree/master/EchellePlots) and [SpectrumPlots](https://github.com/tkallinger/KeplerRGpeakbagging/tree/master/SpectrumPlots)
 
-The modefiles contains general information about the star in the header:
+The **modefiles** contains general information about the star in the header:
 - *fmax*: The frequency of the maximum oscillation power in microHz as defined in Eq.2 in [Kallinger et al. (2014)](https://ui.adsabs.harvard.edu/abs/2014A%26A...570A..41K/abstract) with two super-Lorentzian functions with a fixed exponent of four. The 1 sigma uncertainty is given as fmax_e.
 - *dnu*, *dnu02*, and *f_c*: The larger and small frequency separation determine in the central three radial modes around fmax and the frequency of the central radial mode as defined in Eq.2 of [Kallinger et al. (2010)](https://ui.adsabs.harvard.edu/abs/2010A%26A...509A..77K/abstract). All parameters are in microHz.
 - *dnu_cor* and *alpha*: Values of the curvature corrected large separation in microHz and the corresponding dimensionless curvature parameter as defined in Eq.,4 of [Kallinger et al. (2018)](https://ui.adsabs.harvard.edu/abs/2018A%26A...616A.104K/abstract).
