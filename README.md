@@ -17,8 +17,8 @@ The individual mode parameters are given in the main block:
 - *tau*: mode lifetime in days (0 for unresolved modes fitted with a squared sinc-function)
 - *ev* and *ev1*: mode evidence (i.e. the probability that the mode is not due to noise). A useful threshold is 0.91, which corresponds to *strong evidence* in probability theory. The *ev1* parameter is only valid for l=1 modes. 
 
-
-#To download the full repository (~650MB) type the following command 
+# Usage
+To download the full repository (~650MB) type the following command 
 ```
 git clone https://github.com/tkallinger/KeplerRGpeakbagging.git
 ```
