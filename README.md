@@ -25,8 +25,7 @@ git clone https://github.com/tkallinger/KeplerRGpeakbagging.git
 Individual mode files can be downloaded using the Python function *read_modefile.py*
 
 A summary of the global seismic parameters of all stars in the library is given in the file *summary.dat*
-ID;fmax;fmax_e;dnu_cor;dnu_cor_e;dnu02;dnu02_e;fm;fm_e;dnu;dnu_e;alp;alp_e;evo
 
-More details may be found in <arXiv link>
+More details may be found in ...
 
 For further informations please contact me at tkallinger@me.com
