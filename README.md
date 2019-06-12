@@ -28,4 +28,4 @@ A summary of the global seismic parameters of all stars in the library is given 
 
 More details may be found in ...
 
-For further informations please contact me at tkallinger@me.com
+For further informations please contact tkallinger@me.com
