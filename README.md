@@ -1,6 +1,6 @@
 # Massive peak bagging of red giants in the Kepler field
 
-A library of frequencies, amplitdes, and lifetimes of more than 250,000 individual l=0 to 3 oscillations modes of 6,179 red giants from APOKASC sample ([Pinsonneault et al. 2018](https://ui.adsabs.harvard.edu/abs/2018ApJS..239...32P/abstract)),which were extracted with the **A**utomated **B**ayesian peak-**B**agging **A**lgorithm (ABBA).
+A library of frequencies, amplitdes, and lifetimes of more than 250,000 individual l=0 to 3 oscillations modes of 6,179 red giants from APOKASC sample ([Pinsonneault et al. 2018](https://ui.adsabs.harvard.edu/abs/2018ApJS..239...32P/abstract)), which were extracted with the **A**utomated **B**ayesian peak-**B**agging **A**lgorithm (ABBA).
 
 Visualisations (two pdf files per star) of the results are located in the directories [EchellePlots](https://github.com/tkallinger/KeplerRGpeakbagging/tree/master/EchellePlots) and [SpectrumPlots](https://github.com/tkallinger/KeplerRGpeakbagging/tree/master/SpectrumPlots)
 
