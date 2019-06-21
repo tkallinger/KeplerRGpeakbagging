@@ -1,13 +1,13 @@
 import pandas as pd
 
 def read_modefile( kic , header):
-	# Python function which loads the modefile of particular RG (define by string <kic>) directly from the 
+	# Python function which loads the modefile of a particular RG (define by string <kic>) directly from the 
 	# Github repository and returns a Pandas Dataframe containing either the header parameters (header=True) 
-	# or the mode parameters (header=None). If the file does not exist None is returned.
+	# or the mode parameters (header=None). If the file does not exist, None is returned.
 	#	Usage:
 	#	from read_modefile import read_modefile
-	#	freq = read_modefile('1433803', header=None)	#calling function read_modefile to return mode parameters
-	#	head = read_modefile('1433803', header=True)	#calling function read_modefile to return header parameters
+	#	freq = read_modefile(<kic>, header=None)	#calling function read_modefile to return mode parameters of <kic>
+	#	head = read_modefile(<kic>, header=True)	#calling function read_modefile to return header parameters of <kic>
 
 	url = 'https://raw.githubusercontent.com/tkallinger/KeplerRGpeakbagging/master/ModeFiles/'+kic+'.modes.dat'
 	try :
