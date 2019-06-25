@@ -26,6 +26,6 @@ Individual modefiles can be downloaded using the Python function [read_modefile.
 
 A summary of global seismic parameters of all stars in the library is given in [summary.dat](https://github.com/tkallinger/KeplerRGpeakbagging/blob/master/summary.dat)
 
-More details may be found in ...
+More details may be found in [arXiv:1906.09428](https://arxiv.org/abs/1906.09428)
 
 For further informations please contact tkallinger@me.com
