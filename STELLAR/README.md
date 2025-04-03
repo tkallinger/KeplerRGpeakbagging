@@ -23,7 +23,7 @@ STELLAR has the following class methods:
 ```
 star.fmax_fitter(<fmax_guess=False>, <plot=False>)
 ```
-The *fmax_fitter* automatically finds the approximate position of the power excess. However, this fails in rare cases, for which then an initial guess can be provided. It then fits a global model to the power density spectrum following the approach of [Kallinger et al. (2014)](https://ui.adsabs.harvard.edu/abs/2014A%26A...570A..41K/abstract)
+The *fmax_fitter* automatically finds the approximate position of the power excess and then fits a global model to the power density spectrum following the approach of [Kallinger et al. (2014)](https://ui.adsabs.harvard.edu/abs/2014A%26A...570A..41K/abstract). In rare cases, finding the approximate position fails, and an initial guess *fmax_guess* is needed. *fmax_fitter* also determines if the power excess is staistically significant. Fitting parameters are stored in a file <*ID*.bg_par.dat> and the fit is plotted in <*ID*.pdf> if *plot* is set True. 
 
 
 A library of frequencies, amplitdes, and lifetimes of more than 250,000 individual l=0 to 3 oscillations modes of 6,179 red giants from APOKASC sample ([Pinsonneault et al. 2018](https://ui.adsabs.harvard.edu/abs/2018ApJS..239...32P/abstract)), which were extracted with the **A**utomated **B**ayesian peak-**B**agging **A**lgorithm (ABBA).
