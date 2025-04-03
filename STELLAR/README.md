@@ -1,4 +1,4 @@
-# **S**olar-**T**yp**e** Osci**LL**ation **A**nalyse**R**
+# <ins>S</ins>olar-<ins>T</ins>yp<ins>E</ins> osci<ins>LL</ins>ation <ins>A</ins>nalyse<ins>R</ins>
 
 
 
