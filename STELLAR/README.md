@@ -29,9 +29,9 @@ The *fmax_fitter* automatically finds the approximate position of the power exce
 ```
 star.dnu_fitter(<dnu_guess=False>, <flip_fc=False>, <plot=False>)
 ```
-The *dnu_fitter* uses the global fit parameters to predict initial guesses for the large and small frequency separation *dnu* and *dnu02* from a random forest regressor, which is trained on data of 6000+ Kepler red giants and accurate to about 2%. This works only for stars with *fmax* smaller than about 280 microHz. For star with a larger *fmax*, *dnu_guess* needs to be provided (in a later version, I will implement an estimator for this as well). 
-The *dnu_fitter* then determines *dnu* and *dnu02* in the central three radial orders around *fmax* and the frequency of the central radial mode *f_c* following [Kallinger et al. (2010)](https://ui.adsabs.harvard.edu/abs/2010A%26A...509A..77K/abstract). Fitting parameters are stored in <*ID*.dnu_par.dat> and the fit is plotted in <*ID*.pdf> if *plot* is set True.
-Based on *dnu* and *f_c*, the evolutionary stage of red giants is determined following ([Kallinger et al. 2012](https://ui.adsabs.harvard.edu/abs/2012A%26A...541A..51K/abstract)).
+The *dnu_fitter* uses the global fit parameters to predict initial guesses for the large and small frequency separation *dnu* and *dnu02* from a random forest regressor, which is trained on data of 6000+ Kepler red giants and accurate to about 2%. This works only for stars with *fmax* smaller than about 280 microHz. For star with a larger *fmax*, *dnu_guess* needs to be provided (in a later version, I will implement an estimator for this as well).\
+The *dnu_fitter* then determines *dnu* and *dnu02* in the central three radial orders around *fmax* and the frequency of the central radial mode *f_c* following [Kallinger et al. (2010)](https://ui.adsabs.harvard.edu/abs/2010A%26A...509A..77K/abstract). Fitting parameters are stored in <*ID*.dnu_par.dat> and the fit is plotted in <*ID*.pdf> if *plot* is set True.\
+Based on *dnu* and *f_c*, the evolutionary stage of red giants is determined following ([Kallinger et al. 2012](https://ui.adsabs.harvard.edu/abs/2012A%26A...541A..51K/abstract)).\
 
 
 
