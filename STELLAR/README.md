@@ -4,8 +4,18 @@ STELLAR needs ([UltraNest](https://johannesbuchner.github.io/UltraNest/index.htm
 ```
 pip install ultranest
 ```
-STELLAR **automatically** performs a comprehensive analysis of any solar-type oscillating star (MS to AGB). With an power density spectrum from any source (Kepler, TESS, ...) as only input, it determines the granulation background, the global properties of the power excess (fmax, dnu, dnu02, ...), the evolutionary stage (MS, RGB, RC, ABG), and finally all significant l=0 to 3 modes (including rotationaly splittings for MS stars). 
+STELLAR is a Python class that **automatically** performs a comprehensive analysis of any solar-type oscillating star (MS to AGB). With an power density spectrum from any source (Kepler, TESS, ...) as only input, it determines the granulation background, the global properties of the power excess (fmax, dnu, dnu02, ...), the evolutionary stage (MS, RGB, RC, ABG), and finally all significant l=0 to 3 modes (including rotationaly splittings for MS stars). 
 
+A STELLAR run is initialised as
+```
+star = stellar(ID, pds, <path='files'>, <f_nyg=4165.2>, <verbose=True>)
+```
+where:
+- ID: project name
+- pds: pandas Dataframe with columns <f> (frequency in microHz) and <p> (power density in ppm^2/microHz)
+- path: if not existing, a folder with name ID is created in the folder path, where all output of STELLAR is stored.
+- f_nyg: Nyquist frequency of the power density spectrum. Default value is f_nyq for the 2min TESS observation
+- verbose: to supress the plenty of UltraNest output set it False
 
 A library of frequencies, amplitdes, and lifetimes of more than 250,000 individual l=0 to 3 oscillations modes of 6,179 red giants from APOKASC sample ([Pinsonneault et al. 2018](https://ui.adsabs.harvard.edu/abs/2018ApJS..239...32P/abstract)), which were extracted with the **A**utomated **B**ayesian peak-**B**agging **A**lgorithm (ABBA).
 
