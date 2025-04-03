@@ -12,7 +12,7 @@ star = stellar(ID, pds, <path='files'>, <f_nyg=4165.2>, <verbose=True>)
 ```
 where:
 - *ID*: project name
-- *pds*: pandas Dataframe with columns <f> (frequency in microHz) and <p> (power density in ppm^2/microHz)
+- *pds*: pandas Dataframe with columns *f* (frequency in microHz) and *p* (power density in ppm^2/microHz)
 - *path*: if not existing, a folder with name *ID* is created in the folder *path*, where all output of STELLAR is stored.
 - *f_nyg*: Nyquist frequency of the power density spectrum. Default value is *f_nyq* for the 2min TESS observation
 - *verbose*: to supress the plenty of UltraNest output set it to *False*
