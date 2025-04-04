@@ -26,7 +26,7 @@ STELLAR has the following class methods (which build on each other - so keep the
 ```
 star.fmax_fitter(<fmax_guess=False>, <plot=False>)
 ```
-The *fmax_fitter* automatically finds the approximate position of the power excess and then fits a global model to the power density spectrum following the approach of [Kallinger et al. (2014)](https://ui.adsabs.harvard.edu/abs/2014A%26A...570A..41K/abstract). In rare cases, finding the approximate position fails, and an initial guess *fmax_guess* is needed. *fmax_fitter* also determines if the power excess is statistically significant. Best fitting parameters are stored in <*ID.bg_par.dat*>, the fit itself (and its componensts) are stored in <*ID*.bg.fit.pds> and the fit is plotted in <*ID.pdf*> if *plot* is set True. 
+The *fmax_fitter* automatically finds the approximate position of the power excess and then fits a global model to the power density spectrum following the approach of [Kallinger et al. (2014)](https://ui.adsabs.harvard.edu/abs/2014A%26A...570A..41K/abstract). In rare cases, finding the approximate position fails, and an initial guess *fmax_guess* is needed. *fmax_fitter* also determines if the power excess is statistically significant. Best fitting parameters are stored in <*ID.bg_par.dat*>, the fit itself (and its componensts, e.g. the grantulation background) are stored in <*ID*.bg.fit.pds> and the fit is plotted in <*ID.pdf*> if *plot* is set True. 
 ***
 ### Central large frequency separation
 ```
@@ -43,7 +43,7 @@ star.peakbag_02(<alpha=None>, <l1_threshold=8>, <odds_ratio_limit = 5>, <rotatio
 ```
 The peakbagging methods are based on the original version of ABBA ([Kallinger 2019](https://ui.adsabs.harvard.edu/abs/2019arXiv190609428K/abstract)) but with a few improvements and expansion.\
 
-Prerequisites are *dnu*, *dnu02*, and *f<sub>c</sub>* from the *dnu_fitter* and the global properties of the power excess (*fmax* and *sig*). *peakbag_02* performs the following steps to find all significant l = 0 and 2 modes in the spectrum:
+Prerequisites are *dnu*, *dnu02*, and *f<sub>c</sub>* from the *dnu_fitter* and the granulation background and *fmax* and *sig* from *fmax_fitter*. *peakbag_02* performs the following steps to find all significant l = 0 and 2 modes in the spectrum:
 - The number of searched radial orders is [-dn,0,dn] relative to the order of *f<sub>c</sub>*, where *dn = round(*3sig*/*dnu*) + 1*. The position of the radial modes is estimated as *f<sub>n</sub> = f<sub>c</sub> + n*(1 + alpha/2*n<sup>2</sup>), where the curvature parameter *alpha* is determined from a scaling law (based on the 6000+ Kepler red giants).
 - Two Lorentzian profiles are then fitted to the range [*-1.5 dnu02, +0.5 dnu02*] around *f<sub>n</sub>*. If *l1_threshold* is not *None*, the residual spectrum is checked for narrow peaks (due to diploe modes in the vicinity of the l = 0 and 2 modes) exceeding the signal-to-background ratio threshold. IF one or more are found, they are supressed and the fit is redone.
 - The individual modes need to exceed the given *odds_ratio_limit* to be accepted as stastically significant mode, where the odds_ration is defined as the probility ratio with and without the fit that result from the global evidence of the fit.
