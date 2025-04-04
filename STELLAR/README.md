@@ -20,7 +20,7 @@ where:
 - *f_nyg*: Nyquist frequency of the power density spectrum. Default value is the 2min TESS observations.
 - *verbose*: to supress the plenty of UltraNest output set it to *False*
 
-STELLAR has the following class methods:
+STELLAR has the following class methods (which build on each other - so keep the order):
 ***
 ### Granulation background fit
 ```
