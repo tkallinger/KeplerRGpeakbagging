@@ -17,7 +17,7 @@ where:
 - *ID*: project name
 - *pds*: pandas Dataframe with columns *f* (frequency in microHz) and *p* (power density in ppm^2/microHz)
 - *path*: if not existing, a folder with name *ID* is created in the folder *path*, where all output of STELLAR is stored.
-- *f_nyg*: Nyquist frequency of the power density spectrum. Default value is the 2min TESS observations.
+- *f_nyg*: Nyquist frequency of the power density spectrum. The default value is for the 2min TESS observations.
 - *verbose*: to supress the plenty of UltraNest output set it to *False*
 
 STELLAR has the following class methods (which build on each other - so keep the order):
