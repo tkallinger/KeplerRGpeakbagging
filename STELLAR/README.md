@@ -5,7 +5,7 @@ STELLAR needs ([UltraNest](https://johannesbuchner.github.io/UltraNest/index.htm
 pip install ultranest
 ```
 Then just copy the files <stellar.py> and <RFmodel_dnu.pkl> to your prefered folder.
----
+***
 STELLAR is a Python class that **automatically** performs a comprehensive analysis of any solar-type oscillating star (MS to AGB). With an power density spectrum from any source (Kepler, TESS, ...) as only input, it determines the granulation background, the global properties of the power excess (fmax, dnu, dnu02, ...), the evolutionary stage (MS, RGB, RC, ABG), and finally all significant l=0 to 3 modes (including rotationaly splittings for MS stars). 
 
 A STELLAR run is initialised as
