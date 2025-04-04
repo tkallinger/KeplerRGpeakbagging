@@ -21,13 +21,13 @@ where:
 - *verbose*: to supress the plenty of UltraNest output set it to *False*
 
 STELLAR has the following class methods:
-
+***
 ### Granulation background fit
 ```
 star.fmax_fitter(<fmax_guess=False>, <plot=False>)
 ```
 The *fmax_fitter* automatically finds the approximate position of the power excess and then fits a global model to the power density spectrum following the approach of [Kallinger et al. (2014)](https://ui.adsabs.harvard.edu/abs/2014A%26A...570A..41K/abstract). In rare cases, finding the approximate position fails, and an initial guess *fmax_guess* is needed. *fmax_fitter* also determines if the power excess is statistically significant. Fitting parameters are stored in <*ID*.bg_par.dat> and the fit is plotted in <*ID*.pdf> if *plot* is set True. 
-
+***
 ### Central large frequency separation
 ```
 star.dnu_fitter(<dnu_guess=False>, <flip_fc=False>, <plot=False>)
@@ -36,7 +36,7 @@ The *dnu_fitter* uses the global fit parameters to predict initial guesses for t
 The *dnu_fitter* then determines *dnu* and *dnu02* in the central three radial orders around *fmax* and the frequency of the central radial mode *f_c* following [Kallinger et al. (2010)](https://ui.adsabs.harvard.edu/abs/2010A%26A...509A..77K/abstract). Fitting parameters are stored in <*ID*.dnu_par.dat> and the fit is plotted in <*ID*.pdf> if *plot* is set True.\
 Based on *dnu* and *f<sub>c</sub>*, the evolutionary stage of red giants is determined following ([Kallinger et al. 2012](https://ui.adsabs.harvard.edu/abs/2012A%26A...541A..51K/abstract)).\
 Sometimes, especially for MS stars, initialising *f_c* for the fit fails and a neighbouring dipole mode is miss-identified as the central radial modes. In such rare cases, setting *flip_fc* to True corrects for this.
-
+***
 ### Peakbagging of l=0 and 2 modes
 ```
 star.peakbag_02(<alpha=None>, <l1_threshold=8>, <odds_ratio_limit = 5>, <rotation=False>, <incl_prior=None>, <plot=False>, <log=False>)
