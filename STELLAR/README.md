@@ -51,7 +51,7 @@ Prerequisites are *dnu*, *dnu02*, and *f<sub>c</sub>* from the *dnu_fitter* and 
 - If the modes are found to be significant, the fit is prewithened from the power density spectrum.
 - Finally, the curvature of the l = 0 modes is fitted acording to [Kallinger et al. (2018)](https://ui.adsabs.harvard.edu/abs/2018A%26A...616A.104K/abstract).
 
-The main output (all frequency parameters, ...) is stored in a file *<ID>.modes.dat*. For more detailed out, set *log* to *True*. If *plot* is set *True*, various plots are produced.
+The main output (all frequency parameters, ...) is stored in a file <*ID*.modes.dat>. For more detailed output, set *log* to *True*. If *plot* is set *True*, various plots are produced.
 
 ### Peakbagging of l=1 and 3 modes
 ```
@@ -66,9 +66,9 @@ star.peakbag_13(<ev_limit = 0.8>, <snr_limit=7.5>, <iter_limit=150>, <plot=False
 
 Once all significant modes are extraced, the l = 3 modes are idetified amoung them according to their position in the frequency spectrum and their reltive amplitdue.\
 
-The mode parameters are added to the file *<ID>.modes.dat* and plots are updated if *plot* is set to *True*.
+The mode parameters are added to the file <*ID*.modes.dat> and plots are updated if *plot* is set to *True*.
 
-The method only works for stars with *fmax > 30 microHz* (hard limit in the code) as for stars with smaller *fmax*, the l=1 modes are too densly packed to be resolved, even in the 4 yr long Kepler timeseries. **The peakbaging of dipole modes is still in an experimental phase as it is quite challenging to automate this for the large variety of possibilities**
+The method only works for stars with *fmax > 30 microHz* (hard limit in the code) as for stars with smaller *fmax*, the l=1 modes are too densly packed to be resolved, even in the 4 yr long Kepler timeseries. **The peakbaging of dipole modes is still in an experimental phase as it is quite challenging to automate this for the large variety of possibilities.**
 
 ***
 I also plan to add a further methods:
