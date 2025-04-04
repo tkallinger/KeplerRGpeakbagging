@@ -42,8 +42,11 @@ star.peakbag_02(<alpha=None>, <l1_threshold=8>, <odds_ratio_limit = 5>, <rotatio
 The peakbagging methods are based on the original version of ABBA ([Kallinger 2019](https://ui.adsabs.harvard.edu/abs/2019arXiv190609428K/abstract)) but with a few improvements and expansion.\
 
 Prerequisites are *dnu*, *dnu02*, and *f<sub>c</sub>* from the *dnu_fitter* and the global properties of the power excess (*fmax* and *sig*). *peakbag_02* performs the following steps to find all significant l = 0 and 2 modes in the spectrum:
-- the number of searched radial orders is [-dn,0,dn] relative to the order of *f<sub>c</sub>*, where *dn = round(*3sig*/*dnu*) + 1*. The position of the radial modes is estimated as *f<sub>n</sub> = f<sub>c</sub> + n*(1 + alpha/2*n<sup>2</sup>), where the curvature parameter *alpha* is determined from a scaling law (based on the 6000+ Kepler red giants).
-- Two Lorentzian profiles are then fitted to the range -1.5*dnu02 to +0.5*dnu02 around *f<sub>n</sub>*
+- The number of searched radial orders is [-dn,0,dn] relative to the order of *f<sub>c</sub>*, where *dn = round(*3sig*/*dnu*) + 1*. The position of the radial modes is estimated as *f<sub>n</sub> = f<sub>c</sub> + n*(1 + alpha/2*n<sup>2</sup>), where the curvature parameter *alpha* is determined from a scaling law (based on the 6000+ Kepler red giants).
+- Two Lorentzian profiles are then fitted to the range [*-1.5 dnu02, +0.5 dnu02*] around *f<sub>n</sub>*. If *l1_threshold* is not *None*, the residual spectrum is checked for narrow peaks (due to diploe modes in the vicinity of the l = 0 and 2 modes) exceeding the signal-to-background ratio threshold. IF one or more are found, they are supressed and the fit is redone.
+- The individual modes need to exceed the given *odds_ratio_limit* to be accepted as stastically significant mode, where the odds_ration is defined as the probility ratio with and without the fit that result from the global evidence of the fit.
+- If *rotation* is set to *True*, the l = 2 mode includes rotational split components, which are parameterised by the rotational split frequency *f<sub>rot</sub>* and an *inclination* angle.
+- A Gaussian prior can be set for the inclination with *incl_prior=[a,b]*, where *a* and *b* are the expected value and its uncertainty, respectively. Usually, a first run is done without a prior, then the mean value of the individual inclinations is computed, which then serves as a prior for a 2nd run. This significantly improves the uncertainties of *f<sub>rot</sub>*.
 
 
 
