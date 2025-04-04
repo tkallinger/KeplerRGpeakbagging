@@ -39,7 +39,10 @@ Sometimes, especially for MS stars, initialising *f_c* for the fit fails and a n
 ```
 star.peakbag_02(<alpha=None>, <l1_threshold=8>, <odds_ratio_limit = 5>, <rotation=False>, <incl_prior=None>, <plot=False>, <log=False>)
 ```
-The peakbagging methods are based on the original version of ABBA ([Kallinger 2019](https://ui.adsabs.harvard.edu/abs/2019arXiv190609428K/abstract) but with a few improvements and expansion.
+The peakbagging methods are based on the original version of ABBA ([Kallinger 2019](https://ui.adsabs.harvard.edu/abs/2019arXiv190609428K/abstract)) but with a few improvements and expansion.\
+
+Prerequisites are *dnu*, *dnu02*, and *f_c* from the *dnu_fitter* and the global properties of the power excess (*fmax* and *sig*). *peakbag_02* performs the following steps to find all significant l = 0 and 2 modes in the spectrum:
+- the number of searched radial orders is [-n,0,n] relative to the order of *f_c*, where n = round(*3sig*/*dnu*) + 1
 
 
 
