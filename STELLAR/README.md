@@ -26,7 +26,7 @@ STELLAR has the following class methods (which build on each other - so keep the
 ```
 star.fmax_fitter(<fmax_guess=False>, <plot=False>)
 ```
-The *fmax_fitter* automatically finds the approximate position of the power excess and then fits a global model to the power density spectrum following the approach of [Kallinger et al. (2014)](https://ui.adsabs.harvard.edu/abs/2014A%26A...570A..41K/abstract). In rare cases, finding the approximate position fails, and an initial guess *fmax_guess* is needed. *fmax_fitter* also determines if the power excess is statistically significant. Fitting parameters are stored in <*ID.bg_par.dat*> and the fit is plotted in <*ID.pdf*> if *plot* is set True. 
+The *fmax_fitter* automatically finds the approximate position of the power excess and then fits a global model to the power density spectrum following the approach of [Kallinger et al. (2014)](https://ui.adsabs.harvard.edu/abs/2014A%26A...570A..41K/abstract). In rare cases, finding the approximate position fails, and an initial guess *fmax_guess* is needed. *fmax_fitter* also determines if the power excess is statistically significant. Best fitting parameters are stored in <*ID.bg_par.dat*>, the fit itself (and its componensts) are stored in <*ID*.bg.fit.pds> and the fit is plotted in <*ID.pdf*> if *plot* is set True. 
 ***
 ### Central large frequency separation
 ```
