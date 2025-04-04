@@ -8,6 +8,7 @@ STELLAR is a Python class that **automatically** performs a comprehensive analys
 
 A STELLAR run is initialised as
 ```
+from stellar import stellar
 star = stellar(ID, pds, <path='files'>, <f_nyg=4165.2>, <verbose=True>)
 ```
 where:
