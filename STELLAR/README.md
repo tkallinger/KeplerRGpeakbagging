@@ -53,8 +53,9 @@ star.dnu_fitter(dnu_guess=False, flip_fc=False, plot=False)
 ```
 - **Input**: Uses a Random Forest regressor (trained on 6000+ Kepler red giants) for initial `dnu`/`dnu02` guesses (accurate to ~2%).  
   - For `fmax > 280 µHz`, provide `dnu_guess`.
+  - If central radial modes is mis-matched → turn on `flip_fc`
 - **Output**: 
-  - Evolutionary stage (MS/RGB/RC/AGB) via [Kallinger et al. (2012)](https://ui.adsabs.harvard.edu/abs/2012A%26A...541A..51K/abstract).
+  - Evolutionary stage (MS-RGB/RC/2ndRC/AGB) via [Kallinger et al. (2012)](https://ui.adsabs.harvard.edu/abs/2012A%26A...541A..51K/abstract).
   - Params → `<ID>.dnu_par.dat`
   - Plot (if `plot=True`) → `<ID>.pdf`
 
@@ -77,8 +78,10 @@ star.peakbag_02(
   2. Checks for narrow dipole-mode interference (if `l1_threshold` is set).
   3. Prewhitens significant modes (`odds_ratio > limit`).
   4. Fits curvature via [Kallinger et al. (2018)](https://ui.adsabs.harvard.edu/abs/2018A%26A...616A.104K/abstract).
-- **Output**: Mode params → `<ID>.modes.dat`
-
+- **Output**:
+  - Mode params → `<ID>.modes.dat`
+  - Plots (if `plot=True`) → `<ID>.echelle.pdf`, `<ID>.l02_modes.pdf`, `<ID>.modes.pdf`
+  - detailed logging (if `log=True`)
 ---
 
 ### 4. **Peakbagging: `l=1` & `l=3` Modes**
