@@ -21,7 +21,7 @@ A Python class for **automated asteroseismic analysis** of solar-type oscillator
 from Stellar import Stellar
 
 # Initialize with a power density spectrum (PDS)
-star = stellar(
+star = Stellar(
     ID="MyStar",                      # Project name (output folder prefix)
     pds=pd.DataFrame(columns=["f", "p"]),  # PDS: frequency (µHz) and power (ppm²/µHz)
     path="files",                     # Output directory (optional)
