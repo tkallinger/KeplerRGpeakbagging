@@ -74,7 +74,7 @@ star.peakbag_02(
 )
 ```
 - **Steps**:
-  1. Fits Lorentzians to radial (`l=0`) and quadrupole (`l=2`) modes.
+  1. Sequentially fits Lorentzians to all significant radial (`l=0`) and quadrupole (`l=2`) modes.
   2. Checks for narrow dipole-mode interference (if `l1_threshold` is set).
   3. Prewhitens significant modes (`odds_ratio > limit`).
   4. Fits curvature via [Kallinger et al. (2018)](https://ui.adsabs.harvard.edu/abs/2018A%26A...616A.104K/abstract).
