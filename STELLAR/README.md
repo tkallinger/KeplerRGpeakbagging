@@ -3,7 +3,7 @@
 [![Python](https://img.shields.io/badge/Python-3.7%2B-blue)](https://www.python.org/)
 [![UltraNest](https://img.shields.io/badge/dependency-UltraNest-orange)](https://johannesbuchner.github.io/UltraNest/)
 
-A Python class for **automated asteroseismic analysis** of solar-type oscillators (MS to AGB stars). Extracts global oscillation parameters (`fmax`, `dnu`, `dnu02`), evolutionary stage, and individual modes (`l=0-3`) from power density spectra (Kepler, TESS, etc.). Optimized for speed—completes analysis in **minutes** on an Apple M2 CPU.
+A Python class for **automated asteroseismic analysis** of solar-type oscillators (MS to AGB stars). Extracts global oscillation parameters (`fmax`, `dnu`, `dnu02`,...), evolutionary stage, and individual modes (`l=0-3`) from power density spectra (Kepler, TESS, etc.). Optimized for speed—completes analysis in **minutes** on an Apple M2 CPU.
 
 ---
 
@@ -24,7 +24,7 @@ from stellar import stellar
 star = stellar(
     ID="MyStar",                      # Project name (output folder prefix)
     pds=pd.DataFrame(columns=["f", "p"]),  # PDS: frequency (µHz) and power (ppm²/µHz)
-    path="output_files",              # Output directory (optional)
+    path="files",                     # Output directory (optional)
     f_nyg=4165.2,                     # Nyquist frequency (default: TESS 2-min cadence)
     verbose=True                      # Toggle UltraNest output (optional)
 )
