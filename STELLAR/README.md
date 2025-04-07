@@ -12,13 +12,13 @@ A Python class for **automated asteroseismic analysis** of solar-type oscillator
    ```bash
    pip install ultranest
    ```
-2. Download `stellar.py` and `RFmodel_dnu.pkl` to your working directory.
+2. Download `Stellar.py` and `RFmodel_dnu.pkl` to your working directory.
 
 ---
 
 ## 🛠️ Quick Start
 ```python
-from stellar import stellar
+from Stellar import Stellar
 
 # Initialize with a power density spectrum (PDS)
 star = stellar(
