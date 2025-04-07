@@ -1,79 +1,116 @@
-# STELLAR: <ins>S</ins>olar-<ins>T</ins>yp<ins>E</ins> osci<ins>LL</ins>ation <ins>A</ins>nalyse<ins>R</ins>
+# STELLAR: **S**olar-**T**yp**e** osci**LL**ation **A**nalyse**R**
 
-STELLAR needs ([UltraNest](https://johannesbuchner.github.io/UltraNest/index.html)), which is installed with 
-```
-pip install ultranest
-```
-Then just copy the files <stellar.py> and <RFmodel_dnu.pkl> to your prefered folder.
-***
-STELLAR is a Python class that **automatically** performs a comprehensive analysis of any solar-type oscillating star (MS to AGB). With an power density spectrum from any source (Kepler, TESS, ...) as only input, it determines the granulation background, the global properties of the power excess (fmax, dnu, dnu02, ...), the evolutionary stage (MS, RGB, RC, ABG), and finally all significant l=0 to 3 modes (including rotationaly splittings for MS stars). A full run takes only some ten minutes (for a typical red giant observed by Kepler) with an Apple M2 CPU and is therefore **significantly faster** than other tools. 
+[![Python](https://img.shields.io/badge/Python-3.7%2B-blue)](https://www.python.org/)
+[![UltraNest](https://img.shields.io/badge/dependency-UltraNest-orange)](https://johannesbuchner.github.io/UltraNest/)
 
-A STELLAR run is initialised as
-```
+A Python class for **automated asteroseismic analysis** of solar-type oscillators (MS to AGB stars). Extracts global oscillation parameters (`fmax`, `dnu`, `dnu02`), evolutionary stage, and individual modes (`l=0-3`) from power density spectra (Kepler, TESS, etc.). Optimized for speed—completes analysis in **minutes** on an Apple M2 CPU.
+
+---
+
+## 🚀 Installation
+1. Install [UltraNest](https://johannesbuchner.github.io/UltraNest/):
+   ```bash
+   pip install ultranest
+   ```
+2. Download `stellar.py` and `RFmodel_dnu.pkl` to your working directory.
+
+---
+
+## 🛠️ Quick Start
+```python
 from stellar import stellar
-star = stellar(ID, pds, <path='files'>, <f_nyg=4165.2>, <verbose=True>)
-```
-where:
-- *ID*: project name
-- *pds*: pandas Dataframe with columns *f* (frequency in microHz) and *p* (power density in ppm^2/microHz)
-- *path*: if not existing, a folder with name *ID* is created in the folder *path*, where all output of STELLAR is stored.
-- *f_nyg*: Nyquist frequency of the power density spectrum. The default value is for the 2min TESS observations.
-- *verbose*: to supress the plenty of UltraNest output set it to *False*
 
-STELLAR has the following class methods (which build on each other - so keep the order):
-***
-### Granulation background fit
+# Initialize with a power density spectrum (PDS)
+star = stellar(
+    ID="MyStar",                      # Project name (output folder prefix)
+    pds=pd.DataFrame(columns=["f", "p"]),  # PDS: frequency (µHz) and power (ppm²/µHz)
+    path="output_files",              # Output directory (optional)
+    f_nyg=4165.2,                     # Nyquist frequency (default: TESS 2-min cadence)
+    verbose=True                      # Toggle UltraNest output (optional)
+)
 ```
-star.fmax_fitter(<fmax_guess=False>, <plot=False>)
+
+---
+
+## 🔍 Class Methods (Execute in Order)
+
+### 1. **Granulation Background Fit**
+```python
+star.fmax_fitter(fmax_guess=False, plot=False)
 ```
-The *fmax_fitter* automatically finds the approximate position of the power excess and then fits a global model to the power density spectrum following the approach of [Kallinger et al. (2014)](https://ui.adsabs.harvard.edu/abs/2014A%26A...570A..41K/abstract). In rare cases, finding the approximate position fails, and an initial guess *fmax_guess* is needed. *fmax_fitter* also determines if the power excess is statistically significant. Best fitting parameters are stored in <*ID.bg_par.dat*>, the fit itself (and its componensts, e.g. the grantulation background) are stored in <*ID*.bg.fit.pds> and the fit is plotted in <*ID.pdf*> if *plot* is set True. 
-***
-### Central large frequency separation
+- **Input**: Automatically locates power excess (`fmax`) or uses `fmax_guess` if provided.
+- **Model**: Follows [Kallinger et al. (2014)](https://ui.adsabs.harvard.edu/abs/2014A%26A...570A..41K/abstract).
+- **Output**: 
+  - Best-fit params → `<ID>.bg_par.dat`
+  - Fit components → `<ID>.bg.fit.pds`
+  - Plot (if `plot=True`) → `<ID>.pdf`
+
+---
+
+### 2. **Central Large Frequency Separation (`dnu`)**
+```python
+star.dnu_fitter(dnu_guess=False, flip_fc=False, plot=False)
 ```
-star.dnu_fitter(<dnu_guess=False>, <flip_fc=False>, <plot=False>)
+- **Input**: Uses a Random Forest regressor (trained on 6000+ Kepler red giants) for initial `dnu`/`dnu02` guesses (accurate to ~2%).  
+  - For `fmax > 280 µHz`, provide `dnu_guess`.
+- **Output**: 
+  - Evolutionary stage (MS/RGB/RC/AGB) via [Kallinger et al. (2012)](https://ui.adsabs.harvard.edu/abs/2012A%26A...541A..51K/abstract).
+  - Params → `<ID>.dnu_par.dat`
+  - Plot (if `plot=True`) → `<ID>.pdf`
+
+---
+
+### 3. **Peakbagging: `l=0` & `l=2` Modes**
+```python
+star.peakbag_02(
+    alpha=None,                      # Curvature parameter (auto-estimated if None)
+    l1_threshold=8,                  # Threshold for dipole-mode suppression
+    odds_ratio_limit=5,              # Mode significance cutoff
+    rotation=False,                  # Enable rotational splitting for l=2
+    incl_prior=None,                 # Gaussian prior for inclination [mean, σ]
+    plot=False,
+    log=False
+)
 ```
-The *dnu_fitter* uses the global fit parameters to predict initial guesses for the large and small frequency separation *dnu* and *dnu02* from a random forest regressor, which is trained on data of 6000+ Kepler red giants and accurate to about 2%. This works only for stars with *fmax* smaller than about 280 microHz. For star with a larger *fmax*, *dnu_guess* needs to be provided (in a later version, I will implement an estimator for this as well).\
-The *dnu_fitter* then determines *dnu* and *dnu02* in the central three radial orders around *fmax* and the frequency of the central radial mode *f_c* following [Kallinger et al. (2010)](https://ui.adsabs.harvard.edu/abs/2010A%26A...509A..77K/abstract). Fitting parameters are stored in <*ID*.dnu_par.dat> and the fit is plotted in <*ID*.pdf> if *plot* is set True.\
-Based on *dnu* and *f<sub>c</sub>*, the evolutionary stage of red giants is determined following [Kallinger et al. 2012](https://ui.adsabs.harvard.edu/abs/2012A%26A...541A..51K/abstract).\
-Sometimes, especially for MS stars, initialising *f_c* for the fit fails and a neighbouring dipole mode is miss-identified as the central radial modes. In such rare cases, setting *flip_fc* to True corrects for this.
-***
-### Peakbagging of l=0 and 2 modes
+- **Steps**:
+  1. Fits Lorentzians to radial (`l=0`) and quadrupole (`l=2`) modes.
+  2. Checks for narrow dipole-mode interference (if `l1_threshold` is set).
+  3. Prewhitens significant modes (`odds_ratio > limit`).
+  4. Fits curvature via [Kallinger et al. (2018)](https://ui.adsabs.harvard.edu/abs/2018A%26A...616A.104K/abstract).
+- **Output**: Mode params → `<ID>.modes.dat`
+
+---
+
+### 4. **Peakbagging: `l=1` & `l=3` Modes**
+```python
+star.peakbag_13(
+    ev_limit=0.8,                    # Evidence threshold for mode acceptance
+    snr_limit=7.5,                   # Signal-to-Background cutoff
+    iter_limit=150,                  # Max iterations
+    plot=False,
+    rotation=False,                  # Experimental: rotational splitting for l=1 (MS/subgiants only)
+    incl_prior=None
+)
 ```
-star.peakbag_02(<alpha=None>, <l1_threshold=8>, <odds_ratio_limit = 5>, <rotation=False>, <incl_prior=None>, <plot=False>, <log=False>)
-```
-The peakbagging methods are based on the original version of ABBA ([Kallinger 2019](https://ui.adsabs.harvard.edu/abs/2019arXiv190609428K/abstract)) but with a few improvements and expansion.\
+- **Notes**:
+  - Works only for `fmax > 30 µHz` (hard limit).
+  - **Experimental**: Mixed dipole modes in red giants remain challenging to automate.
+- **Output**: Updated `<ID>.modes.dat` and plots (if `plot=True`).
 
-Prerequisites are *dnu*, *dnu02*, and *f<sub>c</sub>* from the *dnu_fitter* and the granulation background and *fmax* and *sig* from *fmax_fitter*. *peakbag_02* performs the following steps to find all significant l = 0 and 2 modes in the spectrum:
-- The number of searched radial orders is [-dn,0,dn] relative to the order of *f<sub>c</sub>*, where *dn = round(*3sig*/*dnu*) + 1*. The position of the radial modes is estimated as *f<sub>n</sub> = f<sub>c</sub> + n*(1 + alpha/2*n<sup>2</sup>), where the curvature parameter *alpha* is determined from a scaling law (based on the 6000+ Kepler red giants).
-- Two Lorentzian profiles are then fitted to the range [*-1.5 dnu02, +0.5 dnu02*] around *f<sub>n</sub>*. If *l1_threshold* is not *None*, the residual spectrum is checked for narrow peaks (due to diploe modes in the vicinity of the l = 0 and 2 modes) exceeding the signal-to-background ratio threshold. IF one or more are found, they are supressed and the fit is redone.
-- The individual modes need to exceed the given *odds_ratio_limit* to be accepted as stastically significant mode, where the odds_ration is defined as the probility ratio with and without the fit that result from the global evidence of the fit.
-- If *rotation* is set to *True*, the l = 2 mode includes rotational split components, which are parameterised by the rotational split frequency *f<sub>rot</sub>* and an *inclination* angle. A Gaussian prior can be set for the inclination with *incl_prior=[a,b]*, where *a* and *b* are the expected value and its uncertainty, respectively. Usually, a first run is done without a prior, then the mean value of the individual inclinations is computed, which then serves as a prior for a 2nd run. This significantly improves the uncertainties of *f<sub>rot</sub>*.
-- If the modes are found to be significant, the fit is prewithened from the power density spectrum.
-- Finally, the curvature of the l = 0 modes is fitted acording to [Kallinger et al. (2018)](https://ui.adsabs.harvard.edu/abs/2018A%26A...616A.104K/abstract).
+---
 
-The main output (all frequency parameters, ...) is stored in a file <*ID*.modes.dat>. For more detailed output, set *log* to *True*. If *plot* is set *True*, various plots are produced.
+## 🌟 Planned Features
+- **Core rotation rate** for red giants (via mixed dipole modes; Schauer & Kallinger, in prep.).
+- **Automated `dP1` identification**.
 
-### Peakbagging of l=1 and 3 modes
-```
-star.peakbag_13(<ev_limit = 0.8>, <snr_limit=7.5>, <iter_limit=150>, <plot=False>, <rotation=False>, <incl_prior=None>)
-```
-*peakbag_13* performs the following steps to find all significant l = 1 and 3 modes in the spectrum:
-- Search for the largest amplitdue peak in the residual (i.e., free of any l = 0 and 2 modes) spectrum and fit a Lorentzian profile to a window centered on this peak. The window size depends on if pure pressure modes (in MS stars) or mixed dipole modes (in red giants) are expected and adopts to the actual properties of the dipole modes spectrum. 
-- If the resulting mode linewidth is compareable to the resolution limit (i.e. the maximum mode lifetime that can be resolved with the given observing lenght, ~480d in Kepler LC data), the fit is redone with a squared sinc function.
-- The mode significance is rated by comparing the global fit evidences and the pure background signal (i.e., no mode) and needs to exceed the given *ev_limit* to be acceppted. If the mode is accepted, the best fit is prewithened from the residual power density spectrum. 
-- Rotation works as for the l = 2 modes in the method *peakbag_02* but is currently only recommended for MS and sub giant stars.
-- The procedure is prepeated until one of the termination criteria (*ev_limit, snr_limit, iter_limit*, where the latter simply counts the number of modes fitted) is given. 
+---
 
-Once all significant modes are extraced, the l = 3 modes are idetified amoung them according to their position in the frequency spectrum and their reltive amplitdue.\
+## 📜 References
+- Background modeling: [Kallinger et al. (2014)](https://ui.adsabs.harvard.edu/abs/2014A%26A...570A..41K/abstract)
+- `dnu`/`dnu02`: [Kallinger et al. (2010)](https://ui.adsabs.harvard.edu/abs/2010A%26A...509A..77K/abstract)
+- Evolutionary stage: [Kallinger et al. (2012)](https://ui.adsabs.harvard.edu/abs/2012A%26A...541A..51K/abstract)
+- Peakbagging: Based on [ABBA (Kallinger 2019)](https://ui.adsabs.harvard.edu/abs/2019arXiv190609428K/abstract)
 
-The mode parameters are added to <*ID*.modes.dat> and plots are updated if *plot* is set to *True*.
-
-The method only works for stars with *fmax > 30 microHz* (hard limit in the code) as for stars with smaller *fmax*, the l=1 modes are too densly packed to be resolved, even in the 4 yr long Kepler timeseries. **The peakbaging of dipole modes is still in an experimental phase as it is quite challenging to automate this for the large variety of possibilities.**
-
-***
-I also plan to add a further methods:
-- automatically identify rotational splittings in the mixed dipole spectrum of red giants and determine the corresponding core rotation rate according to a new (dP1 independent) method (Schauer & Kallinger, in prep.).
-- automatically identify dP1.
-
+---
 
 For further informations please contact tkallinger@me.com
