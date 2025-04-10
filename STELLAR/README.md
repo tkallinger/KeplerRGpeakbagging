@@ -96,7 +96,7 @@ star.peakbag_13(
 )
 ```
 - **Notes**:
-  - Works only for `fmax > 30 µHz` (hard limit).
+  - Works only for `fmax > 30 µHz` in RGB stars and `fmax > 20 µHz` in RC stars (hard limit).
   - **Experimental**: Mixed dipole modes in red giants remain challenging to automate.
 - **Output**: Updated `<ID>.modes.dat` and plots (if `plot=True`).
 
