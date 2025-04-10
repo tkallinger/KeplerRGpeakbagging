@@ -23,7 +23,7 @@ from Stellar import Stellar
 # Initialize with a power density spectrum (PDS)
 star = Stellar(
     ID="MyStar",                      # Project name (output folder prefix)
-    pds=pd.DataFrame(columns=["f", "p"]),  # PDS: frequency (µHz) and power (ppm²/µHz)
+    pds=pd.DataFrame(columns=["f", "p"]),  # PDS: frequency (µHz) and power density (ppm²/µHz)
     path="files",                     # Output directory (optional)
     f_nyg=4165.2,                     # Nyquist frequency (default: TESS 2-min cadence)
     verbose=True                      # Toggle UltraNest output (optional)
