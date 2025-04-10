@@ -12,16 +12,16 @@ A Python class for **automated asteroseismic analysis** of solar-type oscillator
    ```bash
    pip install ultranest
    ```
-2. Download `stellar.py` and `RFmodel_dnu.pkl` to your working directory.
+2. Download `Stellar.py` and `RFmodel_dnu.pkl` to your working directory.
 
 ---
 
 ## 🛠️ Quick Start
 ```python
-from stellar import stellar
+from Stellar import Stellar
 
 # Initialize with a power density spectrum (PDS)
-star = stellar(
+star = Stellar(
     ID="MyStar",                      # Project name (output folder prefix)
     pds=pd.DataFrame(columns=["f", "p"]),  # PDS: frequency (µHz) and power (ppm²/µHz)
     path="files",                     # Output directory (optional)
@@ -96,7 +96,7 @@ star.peakbag_13(
 )
 ```
 - **Notes**:
-  - Works only for `fmax > 30 µHz` (hard limit).
+  - Works only for `fmax > 30 µHz` in RGB stars and `fmax > 20 µHz` in RC stars (hard limit).
   - **Experimental**: Mixed dipole modes in red giants remain challenging to automate.
 - **Output**: Updated `<ID>.modes.dat` and plots (if `plot=True`).
 
